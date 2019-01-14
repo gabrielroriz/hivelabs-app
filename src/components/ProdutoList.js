@@ -12,7 +12,7 @@ import ProdutoItem from './ProdutoItem';
 class ProdutoList extends Component {
 
     componentWillMount() {
-        // this.props.actions.getProdutos();
+        this.props.actions.getProdutos();
     }
 
     render() {

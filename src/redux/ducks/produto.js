@@ -6,30 +6,30 @@ export const Types = {
 
 const INITIAL_STATE = {
     list: [
-        {
-            "nome": "Toalha",
-            "estoque": 5,
-            "descricao": "Toalha de banho.",
-            "preco": 37.19
-        },
-        {
-            "nome": "Caneca",
-            "estoque": 17,
-            "descricao": "Caneca de aço inox.",
-            "preco": 43.20
-        },
-        {
-            "nome": "Travesseiro",
-            "estoque": 33,
-            "descricao": "Travesseiro da Nasa.",
-            "preco": 71.44
-        },
-        {
-            "nome": "Tênis",
-            "estoque": 4,
-            "descricao": "Tênis Nike para escaladas.",
-            "preco": 23.95
-        }
+        // {
+        //     "nome": "Toalha",
+        //     "estoque": 5,
+        //     "descricao": "Toalha de banho.",
+        //     "preco": 37.19
+        // },
+        // {
+        //     "nome": "Caneca",
+        //     "estoque": 17,
+        //     "descricao": "Caneca de aço inox.",
+        //     "preco": 43.20
+        // },
+        // {
+        //     "nome": "Travesseiro",
+        //     "estoque": 33,
+        //     "descricao": "Travesseiro da Nasa.",
+        //     "preco": 71.44
+        // },
+        // {
+        //     "nome": "Tênis",
+        //     "estoque": 4,
+        //     "descricao": "Tênis Nike para escaladas.",
+        //     "preco": 23.95
+        // }
     ]
 }
 
@@ -38,7 +38,7 @@ export default function produto(state = INITIAL_STATE, action) {
     switch (action.type) {
 
         case Types.GET_PRODUTOS + "_SUCCESS":
-            return state;
+            return { ...state, list: action.payload.data.produtos };
 
         case Types.GET_PRODUTOS + "_FAIL":
             return state;
