@@ -30,7 +30,8 @@ const INITIAL_STATE = {
         //     "descricao": "Tênis Nike para escaladas.",
         //     "preco": 23.95
         // }
-    ]
+    ],
+    carrinho: new Map() //[id, quantity]
 }
 
 export default function produto(state = INITIAL_STATE, action) {
