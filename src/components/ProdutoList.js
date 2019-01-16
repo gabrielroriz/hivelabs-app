@@ -9,46 +9,10 @@ import { Types as ProdutoTypes, Creators as ProdutoCreators } from '../redux/duc
 //components
 import ProdutoItem from './ProdutoItem';
 
+//material components
 import withStyles from '@material-ui/core/styles/withStyles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
-
-const styles = theme => ({
-    appBar: {
-        position: 'relative',
-    },
-    layout: {
-        width: 'auto',
-        marginLeft: theme.spacing.unit * 2,
-        marginRight: theme.spacing.unit * 2,
-        [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
-            width: 600,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-        },
-    },
-    paper: {
-        marginTop: theme.spacing.unit * 3,
-        marginBottom: theme.spacing.unit * 3,
-        padding: theme.spacing.unit * 2,
-        [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
-            marginTop: theme.spacing.unit * 6,
-            marginBottom: theme.spacing.unit * 6,
-            padding: theme.spacing.unit * 3,
-        },
-    },
-    stepper: {
-        padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`,
-    },
-    buttons: {
-        display: 'flex',
-        justifyContent: 'flex-end',
-    },
-    button: {
-        marginTop: theme.spacing.unit * 3,
-        marginLeft: theme.spacing.unit,
-    },
-});
+import styles from '../styles/ProdutoList.js'
 
 
 class ProdutoList extends Component {
@@ -97,8 +61,7 @@ class ProdutoList extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <CssBaseline />
+            <div>
                 <main className={this.props.classes.layout}>
                     {this.props.store.list.map((produto) => {
                         return (
@@ -113,7 +76,7 @@ class ProdutoList extends Component {
                                 preco={produto.preco} />)
                     })}
                 </main>
-            </React.Fragment>
+            </div>
         )
 
     }
