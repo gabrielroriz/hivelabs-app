@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+//TO-DO: put AppBarButton in another file
 const AppBarButton = withStyles({
     root: {
         color: 'white',
@@ -19,7 +20,6 @@ const AppBarButton = withStyles({
 })(Button);
 
 export default withRouter(({ history }) => (
-
     <AppBar position="static">
         <Toolbar>
             <AppBarButton onClick={() => { history.push('/'); }}>Produtos</AppBarButton>

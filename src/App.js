@@ -25,10 +25,9 @@ class App extends Component {
       <Provider store={store}>
         <CssBaseline />
         <MuiThemeProvider theme={MaterialTheme}>
-
           <BrowserRouter>
           <div>
-          <AppBar />
+            <AppBar />
             <Switch>
               <Route path="/" exact={true} component={ProdutoList} />
               <Route path="/carrinho" exact={true} component={Carrinho} />

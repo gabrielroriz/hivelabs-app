@@ -1,5 +1,5 @@
 export default theme => {
-    console.log(theme);
+
     return ({
 
         card: {
@@ -32,7 +32,8 @@ export default theme => {
         },
 
         actionButton: {
-            fontSize: 'default'
+            fontSize: 'default',
+            color: theme.palette.text.secondary
         },
 
         buttons: {

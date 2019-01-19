@@ -1,4 +1,5 @@
 export default theme => ({
+
     layout: {
         width: 'auto',
         marginLeft: theme.spacing.unit * 2,
@@ -8,5 +9,18 @@ export default theme => ({
             marginLeft: 'auto',
             marginRight: 'auto',
         },
-    }
+    },
+
+    buttons: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+    },
+
+    button: {
+        marginRight: theme.spacing.unit * 2,
+    },
+
+    shoppingCartIcon: {
+        marginLeft: theme.spacing.unit
+    },
 });

@@ -28,15 +28,15 @@ class ProdutoItem extends Component {
                         titleTypographyProps={{ variant: "subtitle1" }}
                     />
                     <CardContent>
-                        <Typography component="h1" variant="h6"> {this.props.nome}</Typography>
-                        <Typography variant="subtitle2"> {this.props.descricao}</Typography>
+                        <Typography component="h1" variant="h6" color="textSecondary"> {this.props.nome}</Typography>
+                        <Typography variant="subtitle2" color="textSecondary"> {this.props.descricao}</Typography>
                         <div className={this.props.classes.line} />
                     </CardContent>
 
                     <CardActions className={this.props.classes.cardActions}>
                         <Typography variant="subtitle1">Quantidade</Typography>
                         <Button onClick={() => { this.props.add() }}> <Icon className={this.props.classes.actionButton}>add</Icon></Button>
-                        <Typography variant="h6">{this.props.quantidade === undefined ? '0' : this.props.quantidade}</Typography>
+                        <Typography variant="h6" color="textSecondary">{this.props.quantidade === undefined ? '0' : this.props.quantidade}</Typography>
                         <Button onClick={() => { this.props.remove() }}> <Icon className={this.props.classes.actionButton}>remove</Icon></Button>
                     </CardActions>
                 </Card>
