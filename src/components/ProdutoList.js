@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 //redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {  Creators as ProdutoCreators } from '../redux/ducks/produto';
+import { Creators as ProdutoCreators } from '../redux/ducks/produto';
 
 //components
 import ProdutoItem from './ProdutoItem';
@@ -79,6 +79,7 @@ class ProdutoList extends Component {
                             add={() => { this.addQuantidade(produto.id) }}
                             remove={() => { this.removeQuantidade(produto.id) }}
                             addItemOnCarrinho={() => {
+                                if (this.state.quantidades.get(produto.id) === undefined) { return; }
                                 this.props.history.push('/carrinho');
                                 this.props.actions.addItemOnCarrinho(produto.id, this.state.quantidades.get(produto.id));
                             }}
