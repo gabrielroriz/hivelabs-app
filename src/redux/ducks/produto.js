@@ -49,8 +49,7 @@ export default function produto(state = INITIAL_STATE, action) {
 
         case Types.ADD_ITEM_ON_CARRINHO:
 
-            let carrinho = state.carrinho;
-
+            let carrinho = new Map(state.carrinho);
             carrinho.set(action.payload.id, action.payload.value);
 
             return { ...state, carrinho };

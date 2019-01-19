@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+
+//router
+import { withRouter } from 'react-router-dom';
+
 //redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Types as ProdutoTypes, Creators as ProdutoCreators } from '../redux/ducks/produto'
+import {  Creators as ProdutoCreators } from '../redux/ducks/produto';
 
 //components
 import ProdutoItem from './ProdutoItem';
@@ -20,7 +24,7 @@ class ProdutoList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            quantidades: this.props.store.carrinho
+            quantidades: new Map(this.props.store.carrinho)
         }
     }
 
@@ -74,7 +78,10 @@ class ProdutoList extends Component {
 
                             add={() => { this.addQuantidade(produto.id) }}
                             remove={() => { this.removeQuantidade(produto.id) }}
-                            addItemOnCarrinho={() => { this.props.actions.addItemOnCarrinho(produto.id, this.state.quantidades.get(produto.id)); }}
+                            addItemOnCarrinho={() => {
+                                this.props.history.push('/carrinho');
+                                this.props.actions.addItemOnCarrinho(produto.id, this.state.quantidades.get(produto.id));
+                            }}
                         />)
                 })}
             </main>);
@@ -103,6 +110,6 @@ ProdutoList.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(ProdutoList));
+export default withRouter(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(ProdutoList)));
 
 

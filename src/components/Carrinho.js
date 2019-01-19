@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes, { element } from 'prop-types';
+import PropTypes from 'prop-types';
+
+//router
+import { withRouter } from 'react-router-dom';
 
 //redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Types as ProdutoTypes, Creators as ProdutoCreators } from '../redux/ducks/produto';
+import { Creators as ProdutoCreators } from '../redux/ducks/produto';
 
 //components
 import CarrinhoItem from './CarrinhoItem';
@@ -23,14 +26,6 @@ let items = null;
 
 class Carrinho extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            quantidades: new Map()
-        }
-    }
-
-
     createCarrinhoItems = () => {
 
         let items = [];
@@ -40,30 +35,34 @@ class Carrinho extends Component {
         this.props.store.carrinho.forEach((value, id) => {
 
             let produto = this.props.store.list.find((element) => {
-                if (element.id == id) {
+                if (element.id === id) {
                     return true;
                 }
+                return false;
             });
 
             total += produto.preco * value;
 
-            items.push(
-                <CarrinhoItem
-                    key={produto.id}
-                    valor={produto.preco * value}
-                    nome={produto.nome}
-                    quantidade={value}
-                />
-            );
+            if (value !== 0) {
+                items.push(
+                    <CarrinhoItem
+                        key={produto.id}
+                        valor={produto.preco * value}
+                        nome={produto.nome}
+                        quantidade={value}
+                    />
+                );
+            }
+
         });
 
         if (items.length === 0 || total === 0) {
             return null;
         } else {
-            items.push(<CarrinhoTotalCard valor={total} />);
+            items.push(<CarrinhoTotalCard key="total-card" valor={total} />);
             items.push(
-                <div className={this.props.classes.buttons}>
-                    <Button variant="contained" color="secondary" onClick={() => { this.props.addItemOnCarrinho() }} className={this.props.classes.button}> Inserir mais produtos
+                <div key="buttons" className={this.props.classes.buttons}>
+                    <Button variant="contained" color="secondary" onClick={() => { this.props.history.push('/'); }} className={this.props.classes.button}> Inserir mais produtos
                             <Icon className={this.props.classes.shoppingCartIcon}>shopping_cart</Icon>
                     </Button>
                     <Button variant="contained" color="primary" onClick={() => { }}> Continuar </Button>
@@ -107,6 +106,6 @@ Carrinho.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Carrinho));
+export default withRouter(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Carrinho)));
 
 
