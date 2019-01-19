@@ -42,7 +42,7 @@ class ProdutoItem extends Component {
                 </Card>
 
                 <div className={this.props.classes.buttons}>
-                    <Button variant="contained" color="secondary" onClick={() => { }} className={this.props.classes.button}> Inserir no Carrinho
+                    <Button variant="contained" color="secondary" onClick={() => { this.props.addItemOnCarrinho() }} className={this.props.classes.button}> Inserir no Carrinho
                         <Icon className={this.props.classes.shoppingCartIcon}>shopping_cart</Icon>
                     </Button>
                     <Button variant="contained" color="primary" onClick={() => { }} className={this.props.classes.button}> Continuar </Button>

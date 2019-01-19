@@ -1,11 +1,13 @@
 const ACTION_PREFIX = 'produto/'
 
 export const Types = {
-    GET_PRODUTOS: `${ACTION_PREFIX}GET_PRODUTOS`
+    GET_PRODUTOS: `${ACTION_PREFIX}GET_PRODUTOS`,
+    ADD_ITEM_ON_CARRINHO: `${ACTION_PREFIX}ADD_ITEM_ON_CARRINHO`,
 };
 
 const INITIAL_STATE = {
     list: [
+        /// Mockup
         // {
         //     "nome": "Toalha",
         //     "estoque": 5,
@@ -44,6 +46,15 @@ export default function produto(state = INITIAL_STATE, action) {
         case Types.GET_PRODUTOS + "_FAIL":
             return state;
 
+
+        case Types.ADD_ITEM_ON_CARRINHO:
+
+            let carrinho = state.carrinho;
+
+            carrinho.set(action.payload.id, action.payload.value);
+
+            return { ...state, carrinho };
+
         default: return state
     }
 }
@@ -62,5 +73,10 @@ export const Creators = {
                 }
             }
         }
+    }),
+
+    addItemOnCarrinho: (id, value) => ({
+        type: Types.ADD_ITEM_ON_CARRINHO,
+        payload: { id, value }
     })
 };

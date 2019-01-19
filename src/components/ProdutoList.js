@@ -20,7 +20,7 @@ class ProdutoList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            quantidades: new Map()
+            quantidades: this.props.store.carrinho
         }
     }
 
@@ -61,32 +61,30 @@ class ProdutoList extends Component {
 
     render() {
         return (
-            <div>
-                <main className={this.props.classes.layout}>
-                    {this.props.store.list.map((produto) => {
-                        return (
-                            <ProdutoItem
-                                quantidade={this.state.quantidades.get(produto.id)}
-                                add={() => { this.addQuantidade(produto.id) }}
-                                remove={() => { this.removeQuantidade(produto.id) }}
-                                key={produto.id}
-                                nome={produto.nome}
-                                estoque={produto.estoque}
-                                descricao={produto.descricao}
-                                preco={produto.preco} />)
-                    })}
-                </main>
-            </div>
-        )
+            <main className={this.props.classes.layout}>
+                {this.props.store.list.map((produto) => {
+                    return (
+                        <ProdutoItem
+                            key={produto.id}
+                            quantidade={this.state.quantidades.get(produto.id)}
+                            nome={produto.nome}
+                            estoque={produto.estoque}
+                            descricao={produto.descricao}
+                            preco={produto.preco}
 
+                            add={() => { this.addQuantidade(produto.id) }}
+                            remove={() => { this.removeQuantidade(produto.id) }}
+                            addItemOnCarrinho={() => { this.props.actions.addItemOnCarrinho(produto.id, this.state.quantidades.get(produto.id)); }}
+                        />)
+                })}
+            </main>);
     }
 }
 
 const mapStateToProps = state => {
 
-    let id = 1;
-
     //temporary identifier
+    let id = 1;
     const list = state.produto.list.map(produto => {
         return ({ ...produto, id: id++ })
     })
@@ -96,7 +94,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     actions: {
-        getProdutos: bindActionCreators(ProdutoCreators.getProdutos, dispatch)
+        getProdutos: bindActionCreators(ProdutoCreators.getProdutos, dispatch),
+        addItemOnCarrinho: bindActionCreators(ProdutoCreators.addItemOnCarrinho, dispatch)
     }
 });
 

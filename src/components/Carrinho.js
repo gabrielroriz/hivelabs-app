@@ -25,10 +25,11 @@ class Carrinho extends Component {
     }
 
     render() {
+        console.log(this.props.store.carrinho);
         return (
-            <div>
-                <h1>Olá, carrinho aqui</h1>
-            </div>
+            <main className={this.props.classes.layout}>
+                <h1>Olá</h1>
+            </main>
         )
 
     }
@@ -41,7 +42,7 @@ const mapStateToProps = state => {
     //temporary identifier
     const list = state.produto.list.map(produto => {
         return ({ ...produto, id: id++ })
-    })
+    });
 
     return ({ store: { list, carrinho: state.produto.carrinho } });
 };
